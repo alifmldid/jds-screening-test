@@ -27,5 +27,5 @@ Route::controller(UserController::class)->group(function(){
         return $request->user();
     });
 
-    Route::get("/user", "user");
+    Route::get("/verify", "verify");
 });

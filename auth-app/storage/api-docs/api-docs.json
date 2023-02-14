@@ -1,0 +1,264 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APIs For Auth App",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "User register endpoint",
+                "description": "Endpoint to register new user",
+                "operationId": "2f25885f3b6f61ca11724ec302d2e439",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nik": {
+                                        "description": "Identity number",
+                                        "type": "string",
+                                        "example": "3574526883729839"
+                                    },
+                                    "role": {
+                                        "description": "User role",
+                                        "type": "string",
+                                        "example": "admin"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "Response status",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "description": "Response message",
+                                            "type": "string",
+                                            "example": "Data user berhasil ditambahkan!"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "nik": {
+                                                    "description": "User identity number",
+                                                    "type": "string",
+                                                    "example": "3574526883729839"
+                                                },
+                                                "role": {
+                                                    "description": "User role",
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                },
+                                                "created_at": {
+                                                    "description": "Created user time",
+                                                    "type": "string",
+                                                    "example": "2023-02-14T20:06:57.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "description": "Updated user time",
+                                                    "type": "string",
+                                                    "example": "2023-02-14T20:06:57.000000Z"
+                                                },
+                                                "id": {
+                                                    "description": "Generated user id",
+                                                    "type": "integer",
+                                                    "example": 3
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "User login endpoint",
+                "description": "Endpoint to login and genrate token",
+                "operationId": "0fc9610184083ac6dddab2c63139225a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nik": {
+                                        "description": "Identity number",
+                                        "type": "string",
+                                        "example": "3574526883729838"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "Response status",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "Generated user id",
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "nik": {
+                                                    "description": "User identity number",
+                                                    "type": "string",
+                                                    "example": "3574526883729839"
+                                                },
+                                                "role": {
+                                                    "description": "User role",
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                },
+                                                "created_at": {
+                                                    "description": "Created user time",
+                                                    "type": "string",
+                                                    "example": "2023-02-14T20:06:57.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "description": "Updated user time",
+                                                    "type": "string",
+                                                    "example": "2023-02-14T20:06:57.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "token": {
+                                            "description": "Generated JWT Token",
+                                            "type": "string",
+                                            "example": "xxxxxxxxxxxxxxxxxxxxxxxxx"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/verify": {
+            "post": {
+                "tags": [
+                    "Verify"
+                ],
+                "summary": "Token verify endpoint",
+                "description": "Endpoint to display private claims data",
+                "operationId": "c002bfad6d060f47044d71bc596ec73a",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "Response status",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "description": "Reponse message",
+                                            "type": "string",
+                                            "example": "Token valid!"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "Generated user id",
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "nik": {
+                                                    "description": "User identity number",
+                                                    "type": "string",
+                                                    "example": "3574526883729839"
+                                                },
+                                                "role": {
+                                                    "description": "User role",
+                                                    "type": "string",
+                                                    "example": "admin"
+                                                },
+                                                "created_at": {
+                                                    "description": "Created user time",
+                                                    "type": "string",
+                                                    "example": "2023-02-14T20:06:57.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "description": "Updated user time",
+                                                    "type": "string",
+                                                    "example": "2023-02-14T20:06:57.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
