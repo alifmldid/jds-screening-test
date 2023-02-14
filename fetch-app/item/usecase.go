@@ -2,13 +2,17 @@ package item
 
 import (
 	"context"
+	"fmt"
 	"sort"
 	"strconv"
+
+	"github.com/golang-jwt/jwt"
 )
 
 type ItemUsecase interface{
 	FetchData(c context.Context) (res []Item, err error)
 	AggregateData(c context.Context) (res []ItemAgg, err error)
+	UserData(c context.Context) (user User)
 }
 
 type itemUsecase struct{
@@ -68,4 +72,15 @@ func(uc *itemUsecase) AggregateData(c context.Context) (res []ItemAgg, err error
 	})
 	
 	return res, err
+}
+
+func (uc *itemUsecase) UserData(c context.Context) (user User){
+	userInfo := c.Value("userInfo").(jwt.MapClaims)
+
+	fmt.Println(userInfo["id"].(float64))
+	user.ID = int(userInfo["id"].(float64))
+	user.Nik = userInfo["nik"].(string)
+	user.Role = userInfo["role"].(string)
+
+	return user
 }

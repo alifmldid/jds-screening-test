@@ -9,6 +9,7 @@ import (
 type ItemController interface {
 	FetchDataController(c *gin.Context)
 	AggregateDataController(c *gin.Context)
+	VerifyController(c *gin.Context)
 }
 
 type itemController struct{
@@ -40,4 +41,13 @@ func (controller *itemController) AggregateDataController(c *gin.Context){
 	}
 
 	c.JSON(200, gin.H{"message": "success", "data": items})	
+}
+
+func (controller *itemController) VerifyController(c *gin.Context){
+	user := controller.itemUsecase.UserData(c)
+
+	c.JSON(200, gin.H{
+		"message": "success",
+		"data": user,
+	})
 }

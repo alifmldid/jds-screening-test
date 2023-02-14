@@ -24,3 +24,9 @@ type ItemAgg struct{
 	Product string `json:"product"`
 	Price float32 `json:"price"`
 }
+
+type User struct{
+	ID int `json:"id"`
+	Nik string `json:"nik"`
+	Role string `json:"role"`
+}
