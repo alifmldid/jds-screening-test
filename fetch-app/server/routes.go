@@ -8,10 +8,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
+
+	docs "fetch-app/docs"
 )
 
 func registerItemRoutes(r *gin.Engine, controller item.ItemController){
-	item := r.Group("/")
+	item := r.Group("/api")
+	docs.SwaggerInfo.BasePath = "/api"
 	item.Use(authRequired)
 	item.GET("/fetch", controller.FetchDataController)
 	item.GET("/verify", controller.VerifyController)

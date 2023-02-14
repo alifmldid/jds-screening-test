@@ -1,0 +1,147 @@
+basePath: /api
+definitions:
+  item.AggregateDataResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/item.ItemAgg'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  item.FetchDataResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/item.Item'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+  item.Item:
+    properties:
+      IDR:
+        example: 3317529
+        type: number
+      createdAt:
+        example: "2021-06-09T09:37:05.527Z"
+        type: string
+      department:
+        example: Outdoors
+        type: string
+      id:
+        example: 1
+        type: integer
+      price:
+        example: 218
+        type: number
+      product:
+        example: Salad
+        type: string
+    type: object
+  item.ItemAgg:
+    properties:
+      department:
+        example: Games
+        type: string
+      price:
+        example: 60872.094
+        type: number
+      product:
+        example: Computer
+        type: string
+    type: object
+  item.User:
+    properties:
+      id:
+        example: 2
+        type: integer
+      nik:
+        example: "3574526883729838"
+        type: string
+      role:
+        example: admin
+        type: string
+    type: object
+  item.VerifyTokenResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/item.User'
+        type: array
+      message:
+        example: success
+        type: string
+    type: object
+host: http://localhost:9000
+info:
+  contact: {}
+  description: 'A fetch app service with 3 endpoint: fetch, aggregate, token verify'
+  title: Fetch App Service
+  version: "1.0"
+paths:
+  /aggregate:
+    get:
+      consumes:
+      - application/json
+      description: Aggregate Data from https://60c18de74f7e880017dbfd51.mockapi.io/api/v1/jabar-digital-services/product  )
+        aggregation by department, product, price IDR and order ascending by price
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/item.AggregateDataResponse'
+      summary: fetch data endpoint
+      tags:
+      - Aggregate Data
+  /fetch:
+    get:
+      description: Fetch data from https://60c18de74f7e880017dbfd51.mockapi.io/api/v1/jabar-digital-services/product
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/item.FetchDataResponse'
+      summary: fetch data endpoint
+      tags:
+      - Fetch Data
+  /verify:
+    get:
+      consumes:
+      - application/json
+      description: Display token private claims data
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/item.VerifyTokenResponse'
+      summary: token verify endpoint
+      tags:
+      - Verify Token
+swagger: "2.0"
