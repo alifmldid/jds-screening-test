@@ -18,3 +18,9 @@ type ItemResponse struct{
 	Department string `json:"department"`
 	Product string `json:"product"`
 }
+
+type ItemAgg struct{
+	Department string `json:"department"`
+	Product string `json:"product"`
+	Price float32 `json:"price"`
+}

@@ -3,7 +3,6 @@ package item
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -60,7 +59,6 @@ func (repo *itemRepository) Currency(c context.Context) (lastIDR float32, err er
 	type currency struct{Data idr `json:"data"`}
 	var lastCurrency currency
 
-	fmt.Println(response.Body)
 	err = json.NewDecoder(response.Body).Decode(&lastCurrency)
 	if err != nil {
 		return 0, err
