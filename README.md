@@ -189,7 +189,7 @@ Authorization: "Bearer "+token
 }
 ```
 
-## 1.3 Verify Endpoint
+## 2.3 Verify Endpoint
 
 | <!-- --> | <!-- --> |
 | -------- | -------- |
